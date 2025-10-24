@@ -39,6 +39,14 @@ uint8_t count_button_presses(uint16_t led_on_time_ms,
 	uint16_t led_off_time_ms);
 
 /*
+ * Blink the LED and wait for the user to press the button. Return the number
+ * of presses. The user is allowed 500 ms between button presses before this
+ * function returns.
+ */
+uint8_t count_button_presses_with_timeout(uint16_t led_on_time_ms,
+	uint16_t led_off_time_ms, int ignore_time_ms);
+
+/*
  * Wait a fixed amount of time, blinking the LED (unless led_on_time_ms is 0).
  *
  * Returns the number of times the button was pressed.

@@ -79,12 +79,20 @@ bool wait_for_button_timeout(uint16_t led_on_time_ms, uint16_t led_off_time_ms,
 uint8_t count_button_presses(uint16_t led_on_time_ms,
 	uint16_t led_off_time_ms)
 {
+	return count_button_presses_with_timeout(led_on_time_ms, led_off_time_ms, -1);
+}
+
+uint8_t count_button_presses_with_timeout(uint16_t led_on_time_ms, uint16_t led_off_time_ms, int ignore_time_ms){
 	const uint16_t led_cycle_time_ms = led_on_time_ms + led_off_time_ms;
 	uint16_t led_cycle_pos = 1;
 	struct button_info info = {0, 0};
 	uint16_t timeout_ms = 0;
 
-	while ((info.count == 0) || (timeout_ms > 0)) {
+	bool update_timeout_check = ignore_time_ms != -1;
+
+	int time_until_default = ignore_time_ms;
+
+	while (((info.count == 0) || (timeout_ms > 0)) && (time_until_default > 0 || time_until_default == -1)) {
 		if (led_cycle_pos == 1) {
 			PORTB |= PORTB_LED;
 		} else if (led_cycle_pos == led_on_time_ms) {
@@ -101,6 +109,7 @@ uint8_t count_button_presses(uint16_t led_on_time_ms,
 
 		timeout_ms -= 1;
 		led_cycle_pos += 1;
+		if(update_timeout_check) time_until_default--;
 	}
 
 	PORTB &= ~PORTB_LED;

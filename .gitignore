@@ -5,3 +5,4 @@
 *.o
 *.map
 src/usb-iface/obj
+src/za/za2.c

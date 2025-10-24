@@ -9,10 +9,7 @@
 void switch_controller(enum switch_mode mode)
 {
 	if (mode == REAL_TO_VIRT) {
-		SEND_BUTTON_SEQUENCE(
-			{ BT_L,			DP_NEUTRAL,	SEQ_HOLD,	1  },	/* Reconnect the controller */
-			{ BT_NONE,		DP_NEUTRAL,	SEQ_HOLD,	10 },	/* Wait for reconnection */
-		);
+		sync_controller();
 	} else {
 		go_to_main_menu();
 	}
@@ -22,7 +19,7 @@ void switch_controller(enum switch_mode mode)
 
 	SEND_BUTTON_SEQUENCE(
 		{ BT_NONE,		DP_BOTTOM,	SEQ_HOLD,	1  },	/* Switch Online button or News button (< v11) */
-		{ BT_NONE,		DP_RIGHT,	SEQ_MASH,	6  },	/* Sleep button */
+		{ BT_NONE,		DP_RIGHT,	SEQ_MASH,	8  },	/* Sleep button */
 		{ BT_NONE,		DP_LEFT,	SEQ_MASH,	2  },	/* Controllers button */
 		{ BT_A,			DP_NEUTRAL,	SEQ_HOLD,	1  },	/* Enter controllers settings */
 		{ BT_NONE,		DP_NEUTRAL,	SEQ_HOLD,	10 },	/* Wait for settings */
@@ -43,6 +40,13 @@ void switch_controller(enum switch_mode mode)
 
 		go_to_game();
 	}
+}
+
+void sync_controller(void){
+	SEND_BUTTON_SEQUENCE(
+		{ BT_L,			DP_NEUTRAL,	SEQ_HOLD,	1  },	/* Reconnect the controller */
+		{ BT_NONE,		DP_NEUTRAL,	SEQ_HOLD,	10 },	/* Wait for reconnection */
+	);
 }
 
 

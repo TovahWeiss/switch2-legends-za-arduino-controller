@@ -1,4 +1,6 @@
-Arduino UNO R3 Switch controller emulator
+[This repo is a lazily modified fork of VinDuv's switch-arduino-controller](https://github.com/VinDuv/switch-arduino-controller)
+
+Arduino UNO R3 Switch2 controller emulator
 =========================================
 
 This project provides an easy-to use programming API to emulate a Nintendo
@@ -9,17 +11,11 @@ controller, to read the state of a physical button connected between the
 Arduino’s pins 12 and ground, and to control the Arduino’s on-board LED as well
 as an external buzzer.
 
-Pokémon Sword/Shield automation
+Pokémon Legends ZA automation
 -------------------------------
 
-A sample program is provided to automate some tasks in Pokémon Sword/Shield.
-Details about this can be found in [this file](src/swsh/README.md).
-
-Pokémon Brilliant Diamond/Shining Pearl automation
---------------------------------------------------
-
-A sample program is provided to automate some tasks in Pokémon BD/SP.
-Details about this can be found in [this file](src/bdsp/README.md).
+A very poorly written sample program with lots of half implimented functionality is provided to automate some tasks in Pokémon Legends ZA.
+Details about this can be found in [this file](src/za/README.md).
 
 How does it work?
 -----------------
@@ -98,7 +94,7 @@ Building
 Running `make` will produce the following files:
  - `usb-iface.hex` is the program for the ATmega16U2 managing the USB
    interface.
- - `swsh.hex` is the Pokémon Sword/Shield automation program, running on the
+ - `za.hex` is the Pokémon Sword/Shield automation program, running on the
    ATmega328P. You can create your own automation program and edit the
    `Makefile` to build it.
 
@@ -122,10 +118,10 @@ bump into the top I/O header, making it a tight fit). Flash the `usb-iface.hex`
 file, either manually or by running `make flash-usb-iface`.
 
 Unplug the programmer and connect it to the main microcontroller’s ISCP header.
-Flash the `swsh.hex` file, either manually or by running `make flash-swsh`.
+Flash the `za.hex` file, either manually or by running `make flash-za`.
 
 Use any programmer supported by avrdude, `avrdude -c ?`, by specifying
-`PROGRAMMER` when flashing. E.g. `make PROGRAMMER=usbtiny flash-swsh`.
+`PROGRAMMER` when flashing. E.g. `make PROGRAMMER=usbtiny flash-za`.
 
 Factory restore
 ---------------

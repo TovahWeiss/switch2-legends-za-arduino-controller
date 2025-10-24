@@ -41,6 +41,8 @@ void go_to_main_menu(void);
  */
 void go_to_game(void);
 
+void sync_controller(void);
+
 /*
  * Configure the Switch’s clock to manual mode, starting from the game or the
  * the main menu.

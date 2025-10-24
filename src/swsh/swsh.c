@@ -36,18 +36,25 @@ static bool check_button_press(void);
 
 int main(void)
 {
+	bool isSwitch1 = false;
+	
 	init_automation();
 	init_led_button();
 
 	/* Initial beep to confirm that the buzzer works */
 	beep();
+	
+	if(isSwitch1){
+		/* Wait for the user to press the button (should be on the Switch main menu) */
+		count_button_presses(100, 100);
 
-	/* Wait for the user to press the button (should be on the Switch main menu) */
-	count_button_presses(100, 100);
-
-	/* Set the virtual controller as controller 1 */
-	switch_controller(REAL_TO_VIRT);
-
+		/* Set the virtual controller as controller 1 */
+		switch_controller(REAL_TO_VIRT);
+	}else{
+		sync_controller();
+		beep();
+	}
+	
 	for (;;) {
 		/* Set the LEDs, and make sure automation is paused while in the
 		   menu */
@@ -63,27 +70,27 @@ int main(void)
 		}
 
 		switch (count) {
+			// case 1:
+			// 	temporary_control();
+			// break;
+
+			// case 2:
+			// 	repeat_press_a();
+			// break;
+
+			// case 3:
+			// 	max_raid_menu();
+			// break;
+
 			case 1:
-				temporary_control();
-			break;
-
-			case 2:
-				repeat_press_a();
-			break;
-
-			case 3:
-				max_raid_menu();
-			break;
-
-			case 4:
 				auto_breeding();
 			break;
 
-			case 5:
+			case 2:
 				release_full_boxes();
 			break;
 
-			case 6:
+			case 3:
 				scan_boxes();
 			break;
 
@@ -512,10 +519,10 @@ void auto_breeding(void)
 		{ 560,  0 },	/* 10 Egg cycles, approx. 60 Eggs/hour */
 		{ 1100, 0 },	/* 15 Egg cycles, approx. 50 Eggs/hour */
 		{ 1400, 0 },	/* 20 Egg cycles, approx. 40 Eggs/hour */
-		{ 1750, 0 },	/* 25 Egg cycles, approx. 33 Eggs/hour */
-		{ 2050, 0 },	/* 30 Egg cycles, approx. 30 Eggs/hour */
-		{ 2400, 0 },	/* 35 Egg cycles, approx. 24 Eggs/hour */
-		{ 2700, 0 },	/* 40 Egg cycles, approx. 22 Eggs/hour */
+		{ 1810, 0 },	/* 25 Egg cycles, approx. 33 Eggs/hour */
+		{ 2110, 0 },	/* 30 Egg cycles, approx. 30 Eggs/hour */
+		{ 2460, 0 },	/* 35 Egg cycles, approx. 24 Eggs/hour */
+		{ 2780, 0 },	/* 40 Egg cycles, approx. 22 Eggs/hour */
 	};
 
 	/* Note that the automation is mashing B while on the bike, so its speed is irregular.
@@ -561,8 +568,9 @@ void auto_breeding(void)
 	reposition_player(/* first_time */ true);
 	go_to_nursery_helper();
 
-	/* We do not known if an egg is already available, so we just spin the first time */
+	/* We do not know if an egg is already available, so we just spin the first time */
 	move_in_circles(hatch_time + wait_time, /* go_up_first */ true);
+	hatch_egg();
 
 	for (;;) {
 		reposition_player(/* first_time */ false);
@@ -671,10 +679,10 @@ void get_egg(void)
 {
 	SEND_BUTTON_SEQUENCE(
 		{ BT_NONE,	DP_NEUTRAL,	SEQ_HOLD,	10 },	/* Wait after movement */
-		{ BT_A,		DP_NEUTRAL,	SEQ_HOLD,	15 },	/* Open “accept egg” dialog */
+		{ BT_A,		DP_NEUTRAL,	SEQ_HOLD,	30 },	/* Open “accept egg” dialog */
 		{ BT_NONE,	DP_NEUTRAL,	SEQ_HOLD,	1  },	/* Release A */
 		{ BT_A,		DP_NEUTRAL,	SEQ_HOLD,	1  },	/* Accept egg */
-		{ BT_NONE,	DP_NEUTRAL,	SEQ_HOLD,	75 },	/* Wait for dialog  */
+		{ BT_NONE,	DP_NEUTRAL,	SEQ_HOLD,	80 },	/* Wait for dialog  */
 		{ BT_A,		DP_NEUTRAL,	SEQ_HOLD,	1  },	/* Open “what do you want” dialog */
 		{ BT_NONE,	DP_NEUTRAL,	SEQ_HOLD,	50 },	/* Wait for dialog */
 		{ BT_A,		DP_NEUTRAL,	SEQ_HOLD,	20 },	/* Choose “include in team” */
