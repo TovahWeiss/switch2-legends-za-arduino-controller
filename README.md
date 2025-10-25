@@ -1,7 +1,7 @@
 [This repo is a lazily modified fork of VinDuv's switch-arduino-controller](https://github.com/VinDuv/switch-arduino-controller)
 
 Arduino UNO R3 Switch2 controller emulator
-=========================================
+==========================================
 
 This project provides an easy-to use programming API to emulate a Nintendo
 Switch controller using an Arduino UNO R3.
@@ -16,6 +16,8 @@ Pokémon Legends ZA automation
 
 A very poorly written sample program with lots of half implimented functionality is provided to automate some tasks in Pokémon Legends ZA.
 Details about this can be found in [this file](src/za/README.md).
+
+##Note:## Obligatory "this works on my machine". YMMV. Adjust timing and delays as needed. 
 
 How does it work?
 -----------------

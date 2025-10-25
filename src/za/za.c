@@ -132,6 +132,15 @@ static void reroll_area(){
 
 	set_leds(BOTH_LEDS);
 	for (;;) {
+		
+		//run to gate enterance for ~4 m more of spawns
+		for (uint8_t i = 0 ; i < 20; i += 1) {
+			send_update(BT_B,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
+		}
+		pause_automation();
+		_delay_ms(1100);
+		
+		//open map
 		SEND_BUTTON_SEQUENCE(
 			{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
 		);
@@ -139,6 +148,8 @@ static void reroll_area(){
 		pause_automation();
 		_delay_ms(500);
 
+
+		//zoom out map to max
 		if(isInitial){
 			for (uint8_t i = 0 ; i < 2; i += 1) {
 				send_update(BT_NONE,	DP_NEUTRAL, S_NEUTRAL, S_BOTTOM);
@@ -323,7 +334,9 @@ static void area17(void){
 }
 
 static void area18(void){
+	move_cusror(S_LEFT, 1);
 
+	move_cusror(S_BOTTOM, 1);
 }
 
 static void area19(void){
@@ -342,10 +355,6 @@ static void reroll_teleporter(void){
 			{ BT_A,		DP_NEUTRAL,	SEQ_MASH,	5 }
 		);
 	}
-}
-
-static void run(void){
-	
 }
 
 static void honedge(void){
