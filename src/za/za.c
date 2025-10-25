@@ -134,12 +134,14 @@ static void reroll_area(){
 	for (;;) {
 		
 		//run to gate enterance for ~4 m more of spawns
-		for (uint8_t i = 0 ; i < 20; i += 1) {
-			send_update(BT_B,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
+		if(area != 6){
+			for (uint8_t i = 0 ; i < 20; i += 1) {
+				send_update(BT_B,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
+			}
+			pause_automation();
+			_delay_ms(1100);
 		}
-		pause_automation();
-		_delay_ms(1100);
-		
+	
 		//open map
 		SEND_BUTTON_SEQUENCE(
 			{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
@@ -270,7 +272,9 @@ static void area6(bool isInitial){
 		move_cusror(S_LEFT, 1);
 	}
 	else{
-		move_cusror(S_TOP, 2);
+		for (uint8_t i = 0 ; i < 2; i += 1) {
+			send_update(BT_NONE,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
+		}
 
 		move_cusror(S_RIGHT, 1);
 	}	
