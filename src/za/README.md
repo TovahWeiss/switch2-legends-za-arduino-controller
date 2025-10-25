@@ -65,7 +65,7 @@ Sub menu two: Select your area (see table)
 | 1	| 3	|3|
 | 1	| 4	|4|
 | 1	| 5	|5|
-| 2	| 1	|6|
+| 2	| 1	|6*|
 | 2	| 2	|7|
 | 2	| 3	|8|
 | 2	| 4	|9|
@@ -81,7 +81,7 @@ Sub menu two: Select your area (see table)
 | 4	| 4	|19|
 | 4	| 5	|20|
 
-
+**Note** Zone 6 requies Cafe Bataille to be accessable. The reroll will drop you there to increase spawn radius after the intial set up and orientation.
 
 ### Tower Rerolling [Feature 2 - two button presses]
 
