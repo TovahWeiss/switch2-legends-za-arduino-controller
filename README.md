@@ -17,7 +17,7 @@ Pokémon Legends ZA automation
 A very poorly written sample program with lots of half implimented functionality is provided to automate some tasks in Pokémon Legends ZA.
 Details about this can be found in [this file](src/za/README.md).
 
-##Note:## Obligatory "this works on my machine". YMMV. Adjust timing and delays as needed. 
+**Obligatory:** "this works on my machine". YMMV. Adjust timing and delays as needed. 
 
 How does it work?
 -----------------
