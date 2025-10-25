@@ -135,9 +135,18 @@ static void reroll_area(){
 		SEND_BUTTON_SEQUENCE(
 			{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
 		);
+
 		pause_automation();
 		_delay_ms(500);
-	
+
+		if(isInitial){
+			for (uint8_t i = 0 ; i < 2; i += 1) {
+				send_update(BT_NONE,	DP_NEUTRAL, S_NEUTRAL, S_BOTTOM);
+				pause_automation();
+				_delay_ms(200);
+			}
+		}
+
 		//cursor to area
 		switch (area){
 			case 1: 
@@ -157,7 +166,6 @@ static void reroll_area(){
 			break;	
 			case 6: 
 				area6(isInitial);
-				isInitial = false;
 			break;
 			case 7: 
 				area7();
@@ -210,6 +218,8 @@ static void reroll_area(){
 		SEND_BUTTON_SEQUENCE(
 			{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 },	/* confirm travel */
 		);
+
+		isInitial = false;
 		pause_automation();
 		_delay_ms(4050);
 	}
