@@ -91,7 +91,7 @@ Sub menu two: Select your area (see table)
 
 **Pre-requisites:** Stand on a teleporter pad in Lysandre Labs
 
-#### Honedge Resetting [Feature 4 - four button presses]
+### Honedge Resetting [Feature 4 - four button presses]
 
 **Pre-requisites:** Go through the first teleporter pad in Lysandre Labs directly in front of the elevator at the enterance.
 
