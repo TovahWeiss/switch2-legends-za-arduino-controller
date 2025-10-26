@@ -24,7 +24,7 @@ static void area12(void);
 static void area13(void);
 static void area14(void);
 static void area15(void);
-static void area16(void);
+static void area16(bool);
 static void area17(void);
 static void area18(void);
 static void area19(void);
@@ -32,6 +32,8 @@ static void area20(void);
 // void reroll_static_area(void);
 static void hold_down(void);
 static void reroll_teleporter(void);
+
+static void bench_reset(void);
 
 static void honedge(void);
 
@@ -76,6 +78,10 @@ int main(void)
 			break;
 
 			case 4:
+				bench_reset();
+			break;
+
+			case 5:
 				honedge();
 			break;
 			
@@ -209,7 +215,7 @@ static void reroll_area(){
 				area15();
 			break;
 			case 16: 
-				area16();
+				area16(isInitial);
 			break;
 			case 17: 
 				area17();
@@ -330,12 +336,21 @@ static void area15(void){
 	move_cusror(S_BOTTOM, 2);
 }
 
-static void area16(void){
+static void area16(bool isInitial){
+	if(isInitial){
+		move_cusror(S_RIGHT, 4);
 
+		move_cusror(S_TOP, 6);
+	}
+	else{
+		area5();
+	}
 }
 
 static void area17(void){
-	
+	move_cusror(S_RIGHT, 1);
+
+	move_cusror(S_TOP, 3);	
 }
 
 static void area18(void){
@@ -380,6 +395,17 @@ static void honedge(void){
 		);
 		pause_automation();
 		_delay_ms(2500);
+	}
+}
+
+static void bench_reset(void){
+	for(;;){
+		SEND_BUTTON_SEQUENCE(
+			{ BT_A, DP_NEUTRAL,	SEQ_MASH, 50},	
+		);
+		pause_automation();
+		_delay_ms(14500);
+		send_update(BT_NONE,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
 	}
 }
 

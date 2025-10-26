@@ -91,9 +91,13 @@ Sub menu two: Select your area (see table)
 
 **Pre-requisites:** Stand on a teleporter pad in Lysandre Labs
 
-### Honedge Resetting [Feature 4 - four button presses]
+### Bench Resetting [Feature 4 - four button presses]
+
+**Pre-requisites:** Have "Sit" dialog on screen in front of a bench
+
+### Honedge Resetting [Feature 5 - five button presses]
 
 **Pre-requisites:** Go through the first teleporter pad in Lysandre Labs directly in front of the elevator at the enterance.
 
-This command will run far enough into the room with Duoblade and two Honedge to reroll them, then return to the teleporter pad and reset the process.
+This command will run far enough into the room with Doublade and two Honedge to reroll them, then return to the teleporter pad and reset the process.
 
