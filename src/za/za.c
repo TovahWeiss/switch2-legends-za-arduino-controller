@@ -98,6 +98,7 @@ static void move_cusror(struct stick_coord direction, int8_t times){
 static void hold_down(){
 	for(;;){
 		send_update(BT_A,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
+		send_update(BT_NONE,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
 	}
 }	
 
