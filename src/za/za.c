@@ -310,7 +310,7 @@ static void area10(void){
 }
 
 static void area11(void){
-	move_cusror(S_LEFT, 5);
+	move_cusror(S_LEFT, 3);
 	move_cusror(S_TOP, 2);
 }
 
