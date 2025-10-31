@@ -109,8 +109,8 @@ Sub menu one:
 Select Sewer endpoint - see image
 
 **Pre-requisites:** Anywhere in sewer, out of combat, no map up.
-![|Presses in sub menu 1 | Resulting Zone |
+![map](../../doc/sewermap.png) 
+
+|Presses in sub menu 1 | Resulting Zone |
 | --- | --- |
 | 1	| 1	|
-](doc\sewermap.png) 
-
