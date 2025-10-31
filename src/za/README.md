@@ -108,8 +108,8 @@ This command will run far enough into the room with Doublade and two Honedge to 
 Sub menu one:
 Select Sewer endpoint - see image
 
-**Pre-requisites:** Anywhere in sewer, out of combat, no map up.
-![map](../../doc/sewermap.png) 
+**Pre-requisites:** Anywhere in sewer, out of combat, no map up.  
+![map](../../doc/sewermap.png)   
 
 |Presses in sub menu 1 | Resulting Zone |
 | --- | --- |
