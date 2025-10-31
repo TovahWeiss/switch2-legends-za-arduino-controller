@@ -37,7 +37,11 @@ static void bench_reset(void);
 
 static void honedge(void);
 
-static void move_cusror(struct stick_coord, int8_t);
+static void move_cursor(struct stick_coord, int8_t);
+
+static void sewers(void);
+static void warp_to_sewer_enterance(void);
+static void sewer_1(void);
 
 
 int main(void)
@@ -84,6 +88,10 @@ int main(void)
 			case 5:
 				honedge();
 			break;
+
+			case 6: 
+				sewers();
+			break;
 			
 			default:
 				/* Wrong selection */
@@ -94,7 +102,7 @@ int main(void)
 	}
 }
 
-static void move_cusror(struct stick_coord direction, int8_t times){
+static void move_cursor(struct stick_coord direction, int8_t times){
 	for (uint8_t i = 0 ; i < times; i += 1) {
 		send_update(BT_NONE,	DP_NEUTRAL, direction, S_NEUTRAL);
 		send_update(BT_NONE,	DP_NEUTRAL, S_NEUTRAL, S_NEUTRAL);
@@ -110,8 +118,6 @@ static void hold_down(){
 
 static void reroll_area(){
 	set_leds(BOTH_LEDS);
-	pause_automation();
-
 	pause_automation();
 
 		/* Feature selection menu */
@@ -247,56 +253,56 @@ static void reroll_area(){
 }
 
 static void area1(void){
-	move_cusror(S_LEFT, 4);
+	move_cursor(S_LEFT, 4);
 
-	move_cusror(S_BOTTOM, 1);
+	move_cursor(S_BOTTOM, 1);
 }
 
 static void area2(void){
-	move_cusror(S_TOP, 3);
+	move_cursor(S_TOP, 3);
 }
 
 static void area3(void){
-	move_cusror(S_TOP, 1);
+	move_cursor(S_TOP, 1);
 }
 
 static void area4(void){
-	move_cusror(S_RIGHT, 3);
+	move_cursor(S_RIGHT, 3);
 }
 
 static void area5(void){
-	move_cusror(S_TOP, 3);
+	move_cursor(S_TOP, 3);
 
-	move_cusror(S_RIGHT, 1);
+	move_cursor(S_RIGHT, 1);
 }
 
 static void area6(bool isInitial){
 	if(isInitial){
-		move_cusror(S_RIGHT, 1);
+		move_cursor(S_RIGHT, 1);
 
-		move_cusror(S_TOP, 5);
+		move_cursor(S_TOP, 5);
 
-		move_cusror(S_LEFT, 1);
+		move_cursor(S_LEFT, 1);
 	}
 	else{
 		for (uint8_t i = 0 ; i < 2; i += 1) {
 			send_update(BT_NONE,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
 		}
 
-		move_cusror(S_RIGHT, 1);
+		move_cursor(S_RIGHT, 1);
 	}	
 }
 
 static void area7(void){
-	move_cusror(S_LEFT, 2);
+	move_cursor(S_LEFT, 2);
 
-	move_cusror(S_TOP, 1);
+	move_cursor(S_TOP, 1);
 }
 
 static void area8(void){
-	move_cusror(S_LEFT, 2);
+	move_cursor(S_LEFT, 2);
 
-	move_cusror(S_BOTTOM, 1);
+	move_cursor(S_BOTTOM, 1);
 }
 
 static void area9(void){
@@ -304,14 +310,14 @@ static void area9(void){
 }
 
 static void area10(void){
-	move_cusror(S_RIGHT, 2);
+	move_cursor(S_RIGHT, 2);
 
-	move_cusror(S_TOP, 1);
+	move_cursor(S_TOP, 1);
 }
 
 static void area11(void){
-	move_cusror(S_LEFT, 3);
-	move_cusror(S_TOP, 2);
+	move_cursor(S_LEFT, 3);
+	move_cursor(S_TOP, 2);
 }
 
 static void area12(void){
@@ -319,28 +325,28 @@ static void area12(void){
 }
 
 static void area13(void){
-	move_cusror(S_LEFT,3);
+	move_cursor(S_LEFT,3);
 
-	move_cusror(S_BOTTOM, 1);
+	move_cursor(S_BOTTOM, 1);
 }
 
 static void area14(void){
-	move_cusror(S_LEFT, 1);
+	move_cursor(S_LEFT, 1);
 
-	move_cusror(S_BOTTOM, 2);
+	move_cursor(S_BOTTOM, 2);
 }
 
 static void area15(void){
-	move_cusror(S_RIGHT, 2);
+	move_cursor(S_RIGHT, 2);
 
-	move_cusror(S_BOTTOM, 2);
+	move_cursor(S_BOTTOM, 2);
 }
 
 static void area16(bool isInitial){
 	if(isInitial){
-		move_cusror(S_RIGHT, 4);
+		move_cursor(S_RIGHT, 4);
 
-		move_cusror(S_TOP, 6);
+		move_cursor(S_TOP, 6);
 	}
 	else{
 		area5();
@@ -348,21 +354,21 @@ static void area16(bool isInitial){
 }
 
 static void area17(void){
-	move_cusror(S_RIGHT, 1);
+	move_cursor(S_RIGHT, 1);
 
-	move_cusror(S_TOP, 3);	
+	move_cursor(S_TOP, 3);	
 }
 
 static void area18(void){
-	move_cusror(S_LEFT, 1);
+	move_cursor(S_LEFT, 1);
 
-	move_cusror(S_BOTTOM, 1);
+	move_cursor(S_BOTTOM, 1);
 }
 
 static void area19(void){
-	move_cusror(S_BOTTOM, 2);
+	move_cursor(S_BOTTOM, 2);
 
-	move_cusror(S_LEFT, 1);
+	move_cursor(S_LEFT, 1);
 }
 
 static void area20(void){
@@ -409,6 +415,84 @@ static void bench_reset(void){
 	}
 }
 
+static void sewers(void){
+	set_leds(BOTH_LEDS);
+	pause_automation();
+
+		/* Feature selection menu */
+	uint8_t count = count_button_presses(100, 900);
+
+	for (uint8_t i = 0 ; i < count ; i += 1) {
+		beep();
+		_delay_ms(100);
+	}
+
+	set_leds(BOTH_LEDS);
+	switch (count){
+		case 1:
+			sewer_1();
+			return;
+		break;
+	
+		default:
+			return;		
+		break;
+	}
+}
+
+static void warp_to_sewer_enterance(void){
+	SEND_BUTTON_SEQUENCE(
+		{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 }	/* open map */
+	);
+
+		pause_automation();
+		_delay_ms(500);
+	move_cursor(S_BOTLEFT, 50);
+	move_cursor(S_TOP, 20);
+	move_cursor(S_RIGHT, 5);
+	SEND_BUTTON_SEQUENCE(
+		{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 }
+	);
+
+	pause_automation();
+	_delay_ms(2500);
+}
+
+static void sewer_1(){
+	//open map
+	bool isInit = true;
+
+	for(;;){
+		if(isInit){
+			warp_to_sewer_enterance();
+			isInit = false;
+		}
+		
+		//go from ladder to spawn point
+		for (uint16_t i = 0 ; i < 210; i += 1) {
+			send_update(BT_B,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
+		}
+		for (uint16_t i = 0 ; i < 112; i += 1) {
+			send_update(BT_NONE,	DP_NEUTRAL, S_RIGHT, S_NEUTRAL);
+		}
+		pause_automation();
+		_delay_ms(500);
+		
+		//runback - cant warp b/c combat with alphas
+		for (uint16_t i = 0 ; i < 111; i += 1) {
+			send_update(BT_B,	DP_NEUTRAL, S_LEFT, S_NEUTRAL);
+		}
+		for (uint16_t i = 0 ; i < 210; i += 1) {
+			send_update(BT_NONE,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
+		}
+		pause_automation();
+		_delay_ms(500);
+	}
+	
+	// for(;;){
+	// }
+	return;
+}
 // void reroll_static_area(){
 // 	for (;;) {
 // 		SEND_BUTTON_SEQUENCE(

@@ -99,5 +99,18 @@ Sub menu two: Select your area (see table)
 
 **Pre-requisites:** Go through the first teleporter pad in Lysandre Labs directly in front of the elevator at the enterance.
 
+### Sewer Resetting [Feature 6 - six button presses]
+
+**Pre-requisites:** Go through the first teleporter pad in Lysandre Labs directly in front of the elevator at the enterance.
+
 This command will run far enough into the room with Doublade and two Honedge to reroll them, then return to the teleporter pad and reset the process.
+
+Sub menu one:
+Select Sewer endpoint - see image
+
+**Pre-requisites:** Anywhere in sewer, out of combat, no map up.
+![|Presses in sub menu 1 | Resulting Zone |
+| --- | --- |
+| 1	| 1	|
+](doc\sewermap.png) 
 
