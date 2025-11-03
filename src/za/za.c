@@ -42,6 +42,7 @@ static void move_cursor(struct stick_coord, int8_t);
 static void sewers(void);
 static void warp_to_sewer_enterance(void);
 static void sewer_1(void);
+static void sewer_2(void);
 
 
 int main(void)
@@ -433,6 +434,11 @@ static void sewers(void){
 			sewer_1();
 			return;
 		break;
+
+		case 2:
+			sewer_2();
+			return;
+		break;
 	
 		default:
 			return;		
@@ -445,12 +451,10 @@ static void warp_to_sewer_enterance(void){
 		{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 }	/* open map */
 	);
 
-		pause_automation();
-		_delay_ms(500);
-	move_cursor(S_BOTLEFT, 50);
-	move_cursor(S_TOP, 20);
-	move_cursor(S_RIGHT, 5);
+	pause_automation();
+	_delay_ms(500);
 	SEND_BUTTON_SEQUENCE(
+		{BT_Y, DP_NEUTRAL, SEQ_HOLD, 10},
 		{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 }
 	);
 
@@ -488,9 +492,40 @@ static void sewer_1(){
 		pause_automation();
 		_delay_ms(500);
 	}
-	
-	// for(;;){
-	// }
+	return;
+}
+
+static void sewer_2(void){
+	bool isInit = true;
+	for(;;){
+		if(isInit){
+			warp_to_sewer_enterance();
+			for (uint16_t i = 0 ; i < 119; i += 1) {
+				send_update(BT_B,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
+			}
+			for (uint16_t i = 0 ; i < 115; i += 1) {
+				send_update(BT_NONE, DP_NEUTRAL, S_LEFT, S_NEUTRAL);
+			}
+			pause_automation();
+			_delay_ms(1400);
+			for (uint16_t i = 0 ; i < 74; i += 1) {
+				send_update(BT_B, DP_NEUTRAL, S_LEFT, S_NEUTRAL);
+			}
+			pause_automation();
+			_delay_ms(500);
+			isInit = false;
+		}
+		for (uint16_t i = 0 ; i < 210; i += 1) {
+			send_update(BT_B,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
+		}
+		pause_automation();
+		_delay_ms(500);
+		for (uint16_t i = 0 ; i < 210; i += 1) {
+			send_update(BT_B,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
+		}
+		pause_automation();
+		_delay_ms(500);
+	}
 	return;
 }
 // void reroll_static_area(){

@@ -111,6 +111,7 @@ Select Sewer endpoint - see image
 **Pre-requisites:** Anywhere in sewer, out of combat, no map up.  
 ![map](../../doc/sewermap.png)   
 
-|Presses in sub menu 1 | Resulting Zone |
-| --- | --- |
-| 1	| 1	|
+|Presses in sub menu 1 | Resulting Zone | Respawned Pokemon|
+| --- | --- | --- |
+| 1	| 1	| Goomy (1), Inkay (2) |
+| 2	| 2	| Litwick (2), Patrat (3) |
