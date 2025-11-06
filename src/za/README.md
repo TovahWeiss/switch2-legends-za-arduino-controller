@@ -115,3 +115,11 @@ Select Sewer endpoint - see image
 | --- | --- | --- |
 | 1	| 1	| Goomy (1), Inkay (2) |
 | 2	| 2	| Litwick (2), Patrat (3) |
+
+### Sewer Resetting [Feature 7 - Seven button presses]
+
+**Pre-requisites:** At night, go to the far side of the area 19 flypoint and exit through that side. Turn left, go up the stairs, at the top take a right and walk about 30 m forward. There will be 2 benches on your right. Face the bench closest to the road so that the "Sit here" dialog is showing. (see map below)  
+![map](../../doc/drampaBenchMap.png)   
+
+This command will set the time to day and then run-away reset Drampa for the first 3 hours of the day when it can spawn. (8 cycles total) then go back to the bench, when Drampa no longer spawns, you will return to the bench and reset the time to day before repeating. Unfortunately this is the fastest way that I can find that will actually work with automation that isn't messed up by alpha Garbodor. Good news is, I found 2 while testing 🤷‍♀️ 
+

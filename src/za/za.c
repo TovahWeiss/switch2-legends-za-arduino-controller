@@ -4,6 +4,8 @@
 
 #include <util/delay.h>
 
+#include <math.h>
+
 #include "automation-utils.h"
 #include "user-io.h"
 
@@ -44,6 +46,22 @@ static void warp_to_sewer_enterance(void);
 static void sewer_1(void);
 static void sewer_2(void);
 
+static void bench_to_drampa(void);
+static void drampa_to_bench(void);
+static void smart_drampa(void);
+
+static void run_units(struct stick_coord direction, int16_t units, bool isRunningAlready){
+	double units_per_cycle = 2.941176470588235;
+	uint16_t cycles = (int) lround(units_per_cycle * (double) units);
+	enum button_state run = BT_B;
+	if(isRunningAlready){
+		run = BT_NONE;
+	}
+
+	for(uint16_t i = 0; i < cycles; i+=1){
+		send_update(run, DP_NEUTRAL, direction, S_NEUTRAL);
+	}
+}
 
 int main(void)
 {
@@ -92,6 +110,10 @@ int main(void)
 
 			case 6: 
 				sewers();
+			break;
+
+			case 7:
+				smart_drampa();
 			break;
 			
 			default:
@@ -528,24 +550,60 @@ static void sewer_2(void){
 	}
 	return;
 }
-// void reroll_static_area(){
-// 	for (;;) {
-// 		SEND_BUTTON_SEQUENCE(
-// 			{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
-// 		);
-// 		pause_automation();
-// 		for (uint8_t i = 0 ; i < 3 ; i += 1) {
-// 			send_update(BT_NONE,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
-// 		}
-// 		send_update(BT_NONE,	DP_NEUTRAL, S_NEUTRAL, S_NEUTRAL);
-// 		for (uint8_t i = 0 ; i < 3 ; i += 1) {
-// 			send_update(BT_NONE,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
-// 		}
-// 		send_update(BT_NONE,	DP_NEUTRAL, S_NEUTRAL, S_NEUTRAL);
-// 		SEND_BUTTON_SEQUENCE(
-// 			{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 },	/* confirm travel */
-// 		);
-// 		pause_automation();
-// 		_delay_ms(4050);
-// 	}
-// }
+
+static void bench_to_drampa(void){
+	run_units(S_LEFT, 3, false);
+	run_units(S_BOTTOM, 27, true);
+	run_units(S_RIGHT, 40, true);
+}
+
+static void drampa_to_bench(void){
+	run_units(S_LEFT, 46, false);
+	run_units(S_TOP, 27, true);
+	run_units(S_RIGHT, 1, true);
+	run_units(S_BOTTOM, 1, false);
+
+	send_update(BT_NONE,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
+	//reset back to day
+	SEND_BUTTON_SEQUENCE(
+		{ BT_A, DP_NEUTRAL,	SEQ_MASH, 50},	
+	);
+	pause_automation();
+	_delay_ms(14500);
+	
+	send_update(BT_NONE,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
+	
+	SEND_BUTTON_SEQUENCE(
+		{ BT_A, DP_NEUTRAL,	SEQ_MASH, 50},	
+	);
+	pause_automation();
+	_delay_ms(14500);
+}
+
+static void smart_drampa(void){
+	//change to day
+	SEND_BUTTON_SEQUENCE(
+		{ BT_A, DP_NEUTRAL,	SEQ_MASH, 50},	
+	);
+	pause_automation();
+	_delay_ms(14500);
+
+	for(;;){
+		//setup from bench
+		bench_to_drampa();
+		pause_automation();
+		_delay_ms(1000); //wait for drampa to spawn in
+		
+		//spawn loop
+		for(uint8_t i = 0; i < 8; i+=1){
+			run_units(S_LEFT, 73, false);
+			pause_automation();
+			_delay_ms(500);
+
+			run_units(S_RIGHT, 72, false);
+			pause_automation();
+			_delay_ms(1000);
+		}	
+		drampa_to_bench();
+	}
+}
