@@ -32,27 +32,21 @@ static void area17(void);
 static void area18(void);
 static void area19(void);
 static void area20(void);
-// void reroll_static_area(void);
 static void hold_down(void);
 static void reroll_teleporter(void);
-
 static void bench_reset(void);
-
 static void honedge(void);
-
 static void move_cursor(struct stick_coord, int8_t);
-
 static void sewers(void);
 static void warp_to_sewer_enterance(void);
 static void sewer_1(void);
 static void sewer_2(void);
-
 static void bench_to_drampa(void);
 static void drampa_to_bench(void);
 static void smart_drampa(void);
-
 static void bench_reset_alpha_exploit(void);
 
+//utility
 static void run_units(struct stick_coord direction, int16_t units, bool isRunningAlready){
 	double units_per_cycle = 2.941176470588235;
 	uint16_t cycles = (int) lround(units_per_cycle * (double) units);
@@ -495,7 +489,7 @@ static void sewers(void){
 
 static void warp_to_sewer_enterance(void){
 	open_map(false);
-	
+
 	SEND_BUTTON_SEQUENCE(
 		{BT_Y, DP_NEUTRAL, SEQ_HOLD, 10},
 		{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 }
