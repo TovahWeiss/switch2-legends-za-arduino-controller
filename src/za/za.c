@@ -170,11 +170,11 @@ static void reroll_area(){
 	set_leds(BOTH_LEDS);
 	for (;;) {
 		
-		//run to gate enterance for ~5 m more of spawns
+		//run to gate enterance for ~8 m more of spawns
 		if(area != 6){
-			run_units(S_TOP, 5, false);
+			run_units(S_TOP, 8, false);
 			pause_automation();
-			_delay_ms(1100);
+			_delay_ms(900);
 		}
 	
 		open_map(isInitial);
