@@ -10,6 +10,7 @@
 #include "user-io.h"
 
 /* Static functions */
+static void open_map(bool);
 static void reroll_area(void);
 static void area1(void);
 static void area2(void);
@@ -182,21 +183,7 @@ static void reroll_area(){
 			_delay_ms(1100);
 		}
 	
-		//open map
-		SEND_BUTTON_SEQUENCE(
-			{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
-		);
-		pause_automation();
-		_delay_ms(500);
-
-		//zoom out map to max
-		if(isInitial){
-			for (uint8_t i = 0 ; i < 2; i += 1) {
-				send_update(BT_NONE,	DP_NEUTRAL, S_NEUTRAL, S_BOTTOM);
-				pause_automation();
-				_delay_ms(200);
-			}
-		}
+		open_map(isInitial);
 
 		//cursor to area
 		switch (area){
@@ -275,6 +262,24 @@ static void reroll_area(){
 		_delay_ms(4050);
 	}
 
+}
+
+static void open_map(bool isInitial){
+	//open map
+	SEND_BUTTON_SEQUENCE(
+		{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
+	);
+	pause_automation();
+	_delay_ms(500);
+
+	//zoom out map to max
+	if(isInitial){
+		for (uint8_t i = 0 ; i < 2; i += 1) {
+			send_update(BT_NONE,	DP_NEUTRAL, S_NEUTRAL, S_BOTTOM);
+			pause_automation();
+			_delay_ms(200);
+		}
+	}
 }
 
 static void area1(void){
@@ -489,12 +494,8 @@ static void sewers(void){
 }
 
 static void warp_to_sewer_enterance(void){
-	SEND_BUTTON_SEQUENCE(
-		{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 }	/* open map */
-	);
-
-	pause_automation();
-	_delay_ms(500);
+	open_map(false);
+	
 	SEND_BUTTON_SEQUENCE(
 		{BT_Y, DP_NEUTRAL, SEQ_HOLD, 10},
 		{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 }
