@@ -49,7 +49,7 @@ board once to activate feature 1; twice to activate feature 2; etc.
 
 The different automation features are described below.
 
-### Reroll wild area [Feature 1 — one button press]
+## Reroll wild area [Feature 1 — one button press]
 
 **Pre-requisites:** Warp to the wild area you will be working rerolling via its main icon.
 
@@ -83,23 +83,23 @@ Sub menu two: Select your area (see table)
 
 **Note** Zone 6 requies Cafe Bataille to be accessable. The reroll will drop you there to increase spawn radius after the intial set up and orientation.
 
-### Tower Rerolling [Feature 2 - two button presses]
+## Tower Rerolling [Feature 2 - two button presses]
 
 **Pre-requisites:** Be at the top of the tower in area 3, directly after exiting the stairs up, facing away from the zone 
 
-### Teleporter Rerolling [Feature 3 - three button presses]
+## Teleporter Rerolling [Feature 3 - three button presses]
 
 **Pre-requisites:** Stand on a teleporter pad in Lysandre Labs
 
-### Bench Resetting [Feature 4 - four button presses]
+## Bench Resetting [Feature 4 - four button presses]
 
 **Pre-requisites:** Have "Sit" dialog on screen in front of a bench
 
-### Honedge Resetting [Feature 5 - five button presses]
+## Honedge Resetting [Feature 5 - five button presses]
 
 **Pre-requisites:** Go through the first teleporter pad in Lysandre Labs directly in front of the elevator at the enterance.
 
-### Sewer Resetting [Feature 6 - six button presses]
+## Sewer Resetting [Feature 6 - six button presses]
 
 **Pre-requisites:** Go through the first teleporter pad in Lysandre Labs directly in front of the elevator at the enterance.
 
@@ -116,10 +116,15 @@ Select Sewer endpoint - see image
 | 1	| 1	| Goomy (1), Inkay (2) |
 | 2	| 2	| Litwick (2), Patrat (3) |
 
-### Sewer Resetting [Feature 7 - Seven button presses]
+## Sewer Resetting [Feature 7 - Seven button presses]
 
 **Pre-requisites:** At night, go to the far side of the area 19 flypoint and exit through that side. Turn left, go up the stairs, at the top take a right and walk about 30 m forward. There will be 2 benches on your right. Face the bench closest to the road so that the "Sit here" dialog is showing. (see map below)  
 ![map](../../doc/drampaBenchMap.png)   
 
 This command will set the time to day and then run-away reset Drampa for the first 3 hours of the day when it can spawn. (8 cycles total) then go back to the bench, when Drampa no longer spawns, you will return to the bench and reset the time to day before repeating. Unfortunately this is the fastest way that I can find that will actually work with automation that isn't messed up by alpha Garbodor. Good news is, I found 2 while testing 🤷‍♀️ 
 
+## Area 20 Alpha Spawning Glitch [Feature 8 - Eight button presses]
+
+**Pre-requisites:** See [This Video](https://youtube.com/shorts/wpKpsWk2kq4?si=TfAEQC8_qQXp36tq) for setup, then go the bench between the pokemon center north of area 20 and the tower. Face the bench with the prompt for sitting on screen.
+
+Bench reset but runs to the right 10 units to grab the far alphas, allowing for 6 to be reset at once instead of 4. Can also be used for bench resets here without the glitch for rerolling 2 alphas at a time.

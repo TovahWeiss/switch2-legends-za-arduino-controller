@@ -50,6 +50,8 @@ static void bench_to_drampa(void);
 static void drampa_to_bench(void);
 static void smart_drampa(void);
 
+static void bench_reset_alpha_exploit(void);
+
 static void run_units(struct stick_coord direction, int16_t units, bool isRunningAlready){
 	double units_per_cycle = 2.941176470588235;
 	uint16_t cycles = (int) lround(units_per_cycle * (double) units);
@@ -115,6 +117,10 @@ int main(void)
 			case 7:
 				smart_drampa();
 			break;
+
+			case 8:
+				bench_reset_alpha_exploit();
+			break;
 			
 			default:
 				/* Wrong selection */
@@ -169,11 +175,9 @@ static void reroll_area(){
 	set_leds(BOTH_LEDS);
 	for (;;) {
 		
-		//run to gate enterance for ~4 m more of spawns
+		//run to gate enterance for ~5 m more of spawns
 		if(area != 6){
-			for (uint8_t i = 0 ; i < 20; i += 1) {
-				send_update(BT_B,	DP_NEUTRAL, S_TOP, S_NEUTRAL);
-			}
+			run_units(S_TOP, 5, false);
 			pause_automation();
 			_delay_ms(1100);
 		}
@@ -182,10 +186,8 @@ static void reroll_area(){
 		SEND_BUTTON_SEQUENCE(
 			{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
 		);
-
 		pause_automation();
 		_delay_ms(500);
-
 
 		//zoom out map to max
 		if(isInitial){
@@ -424,6 +426,24 @@ static void honedge(void){
 		);
 		pause_automation();
 		_delay_ms(2500);
+	}
+}
+
+static void bench_reset_alpha_exploit(void){
+	for(;;){
+		SEND_BUTTON_SEQUENCE(
+			{ BT_A, DP_NEUTRAL,	SEQ_MASH, 50},	
+		);
+		pause_automation();
+		_delay_ms(14500);
+		//
+		run_units(S_RIGHT, 12, false);
+		pause_automation();
+		_delay_ms(1000);
+		run_units(S_LEFT, 12, false);
+		run_units(S_BOTTOM, 1, true);
+		//
+		send_update(BT_NONE,	DP_NEUTRAL, S_BOTTOM, S_NEUTRAL);
 	}
 }
 
