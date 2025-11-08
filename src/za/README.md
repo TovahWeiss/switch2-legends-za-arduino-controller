@@ -102,9 +102,11 @@ Select your pokemon (see table)
 | Presses | Pokemon | Prereq |
 | --- | --- | --- |
 | 1 | Honedge | Go through the first teleporter pad in Lysandre Labs directly in front of the elevator at the enterance.|
-| 2 | Drampa | At night, go to the far side of the area 19 flypoint and exit through that side. Turn left, go up the stairs, at the top take a right and walk about 30 m forward. There will be 2 benches on your right. Face the bench closest to the road so that the "Sit here" dialog is showing. (see map below)  
-![map](../../doc/drampaBenchMap.png)|
+| 2 | Drampa | At night, go to the far side of the area 19 flypoint and exit through that side. Turn left, go up the stairs, at the top take a right and walk about 30 m forward. There will be 2 benches on your right. Face the bench closest to the road so that the "Sit here" dialog is showing. See map below.|
 | 3 | Helioptile | Warp to area 14 |
+
+**Drampa Map**:  
+![map](../../doc/drampaBenchMap.png) 
 
 ## Sewer Resetting [Feature 6 - six button presses]
 
