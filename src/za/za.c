@@ -45,6 +45,8 @@ static void bench_to_drampa(void);
 static void drampa_to_bench(void);
 static void smart_drampa(void);
 static void bench_reset_alpha_exploit(void);
+static void helioptile(void);
+static void indiv_menu(void);
 
 //utility
 static void run_units(struct stick_coord direction, int16_t units, bool isRunningAlready){
@@ -102,7 +104,7 @@ int main(void)
 			break;
 
 			case 5:
-				honedge();
+				indiv_menu();
 			break;
 
 			case 6: 
@@ -110,13 +112,9 @@ int main(void)
 			break;
 
 			case 7:
-				smart_drampa();
-			break;
-
-			case 8:
 				bench_reset_alpha_exploit();
 			break;
-			
+					
 			default:
 				/* Wrong selection */
 				delay(100, 200, 1500);
@@ -256,6 +254,44 @@ static void reroll_area(){
 		_delay_ms(4050);
 	}
 
+}
+
+static void helioptile(void){
+	bool isInitial = true;
+
+	for(;;){
+		run_units(S_TOP, 8, false);
+		SEND_BUTTON_SEQUENCE(
+			{ BT_A, DP_NEUTRAL,	SEQ_MASH,	4 },	/* confirm travel */
+		);
+		pause_automation();
+		_delay_ms(1800);
+		
+		run_units(S_TOP, 20, false);
+		pause_automation();
+		_delay_ms(1000);
+		
+
+		run_units(S_BOTTOM, 20, false);
+		SEND_BUTTON_SEQUENCE(
+			{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 },	/* confirm travel */
+		);
+		
+		pause_automation();
+		_delay_ms(2000);
+
+		open_map(isInitial);
+		
+		area14();
+
+		SEND_BUTTON_SEQUENCE(
+			{ BT_A, DP_NEUTRAL,	SEQ_MASH,	10 },	/* confirm travel */
+		);
+
+		isInitial = false;
+		pause_automation();
+		_delay_ms(4050);
+	}
 }
 
 static void open_map(bool isInitial){
@@ -622,3 +658,36 @@ static void smart_drampa(void){
 		drampa_to_bench();
 	}
 }
+
+static void indiv_menu(void){
+	set_leds(BOTH_LEDS);
+	pause_automation();
+
+		/* Feature selection menu */
+	uint8_t count = count_button_presses(100, 900);
+
+	for (uint8_t i = 0 ; i < count ; i += 1) {
+		beep();
+		_delay_ms(100);
+	}
+
+	set_leds(BOTH_LEDS);
+	switch (count){
+		case 1:
+			honedge();
+		break;
+
+		case 2:
+			smart_drampa();
+		break;
+	
+		case 3:
+			helioptile();		
+		break;
+
+		default:
+			return;
+		break;
+	}
+}
+	
