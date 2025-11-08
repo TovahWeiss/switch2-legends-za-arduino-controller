@@ -1,7 +1,9 @@
 Pokémon Legends ZA automation
 ===============================
 
-**Note:** This is designed for the switch 2. If you want to use this on the switch 1, you will need to set up the arduino with the initialization methods found in [VinDuv's original repo](https://github.com/VinDuv/switch-arduino-controller) and adjust timing to be about tripple for loading zones and animations.
+**Note:** This is designed for the switch 2. If you want to use this on the switch 1, you will need to set up the arduino with the initialization methods found in [VinDuv's original repo](https://github.com/VinDuv/switch-arduino-controller) and adjust timing to be about tripple for loading zones and animations. A
+
+**Note:** My shiny dex is completed in this game so untill DLC comes out unless anyone reaches out, I likely wont be adding any more features for now!
 
 This module automates shiny rolling in legends ZA.
 
