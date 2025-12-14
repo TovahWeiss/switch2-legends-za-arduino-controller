@@ -94,6 +94,10 @@ int main(void)
 				scan_boxes();
 			break;
 
+			case 4:
+				repeat_press_a();
+			break;
+
 			default:
 				/* Wrong selection */
 				delay(100, 200, 1500);

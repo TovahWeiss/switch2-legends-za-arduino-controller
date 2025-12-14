@@ -127,7 +127,15 @@ Select Sewer endpoint - see image
 | 1	| 1	| Goomy (1), Inkay (2) |
 | 2	| 2	| Litwick (2), Patrat (3) |
 
-## Area 20 Alpha Spawning Glitch [Feature 7 - Seven button presses]
+## Reroll Hyperspace [Feature 7 - Seven button presses]
+
+**Pre-requisites:** Be out of combat in hyperspace with pokemon inside of the 50 unit radius.
+
+Warps back to the portal over and over as quickly as possible.
+
+## Area 20 Alpha Spawning Glitch [Feature 8 - Eight button presses]
+
+### Only works pre 2.0 patch ###
 
 **Pre-requisites:** See [This Video](https://youtube.com/shorts/wpKpsWk2kq4?si=TfAEQC8_qQXp36tq) for setup, then go the bench between the pokemon center north of area 20 and the tower. Face the bench with the prompt for sitting on screen.
 

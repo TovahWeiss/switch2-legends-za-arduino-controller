@@ -47,6 +47,7 @@ static void smart_drampa(void);
 static void bench_reset_alpha_exploit(void);
 static void helioptile(void);
 static void indiv_menu(void);
+static void reroll_hyperspace(void);
 
 //utility
 static void run_units(struct stick_coord direction, int16_t units, bool isRunningAlready){
@@ -90,7 +91,7 @@ int main(void)
 			case 1:
 				reroll_area();
 			break;
-
+			
 			case 2:
 				hold_down();
 			break;
@@ -112,6 +113,10 @@ int main(void)
 			break;
 
 			case 7:
+				reroll_hyperspace();
+			break;
+
+			case 8:
 				bench_reset_alpha_exploit();
 			break;
 					
@@ -121,6 +126,21 @@ int main(void)
 			break;
 		}
 		
+	}
+}
+
+static void reroll_hyperspace(){
+	for(;;){
+		SEND_BUTTON_SEQUENCE(
+			{ BT_P, DP_NEUTRAL,	SEQ_HOLD,	10 },	/* open map */
+		);
+		pause_automation();
+		_delay_ms(500);
+			SEND_BUTTON_SEQUENCE(
+			{ BT_A, DP_NEUTRAL,	SEQ_MASH,	20 },	/* press a and confirm */
+		);
+		pause_automation();
+		_delay_ms(2200);
 	}
 }
 
